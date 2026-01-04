@@ -14,7 +14,7 @@ Projekt demonstruje skalowalną architekturę analityczną: **Generator ➡ Baza
 
 ## 🛠️ Technologie
 
-* **Python (Pandas, PyODBC):** Skrypt odpowiadający za symulację pracy maszyn. Generowane są cykle produkcyjne, losowe zdarzenia awaryjne oraz statusy kontroli jakości (braki/dobre sztuki).
+* **Python (PyODBC):** Skrypt odpowiadający za symulację pracy maszyn. Pobierane są cykle produkcyjne, generowane są losowe zdarzenia awaryjne oraz statusy kontroli jakości (braki/dobre sztuki).
 * **SQL Server (T-SQL):** Magazyn danych zaprojektowany w oparciu o model gwiazdy (**Star Schema**). W celu sprawdzenia jakości generowanych danych telemetrycznych utworzono Procedurę Składowaną (`LoadTelemetry`), która przy nieprawidłowych wartościach loguje błąd do tabeli ErrorLog. Wykorzystano Widoki (`Views`) do agregacji danych i przygotowania warstwy semantycznej.
 * **Power BI:** Warstwa wizualizacji danych. Zastosowano miary DAX, funkcję Drill-through oraz formatowanie warunkowe w celu diagnostyki przyczyn spadków wydajności.
 
