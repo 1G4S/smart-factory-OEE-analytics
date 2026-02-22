@@ -63,9 +63,78 @@ SmartFactory_OEE_Analytics/
 └── README.md                   # Dokumentacja techniczna
 ```
 
+ENG BELOW
+
+# 🏭 Smart Factory OEE Analytics
+
+## 📝 Project Description
+
+Smart Factory OEE Analytics is an End-to-End project implementing a complete Business Intelligence process: from raw data to a ready-to-use executive report. The system simulates production processes and enables analysis of a key performance indicator – OEE (Overall Equipment Effectiveness).
+
 ---
 
-## 📬 Kontakt
-Autor: **Igor Sarnowski**
+Repository Structure:
+The repository aggregates source code from two modules to present the full Data Pipeline:
+**Python Module** – telemetry data generator and machine operation simulator.
+**SQL Module** – data warehouse and ETL transformation layer.
+
+The project demonstrates a scalable analytical architecture:
+***Generator ➡ SQL Database (Star Schema) ➡ Power BI***
+
+---
+
+## 🛠️ Technologies
+
+Python (PyODBC): Script responsible for simulating machine operations. Production cycles are retrieved, random failure events are generated, and quality control statuses (scrap/good parts) are assigned.
+
+SQL Server (T-SQL): Data warehouse designed using a Star Schema model. To validate the quality of generated telemetry data, a Stored Procedure (LoadTelemetry) was created, which logs errors to the ErrorLog table when invalid values are detected. Views are used for data aggregation and preparation of the semantic layer.
+
+Power BI: Data visualization layer. DAX measures, Drill-through functionality, and conditional formatting were applied to diagnose causes of performance drops.
+
+### Main Panel (Executive)***
+![Executive Dashboard](img/ExecutiveDashboard.png)
+*Overview with time and production line filtering options.*
+
+### Machine Details (Diagnostics)***
+![Machine Details](img/DrillThrough.png)
+
+*Detailed view using data bars to analyze failure causes.*
+
+---
+
+## 📂 File Structure
+
+The project has been divided into functional modules according to the following structure:
+SmartFactory_OEE_Analytics/
+│
+├── img/                        # Screenshots used in documentation
+│   ├── ExecutiveDashboard.png
+│   └── DrillThrough.png
+│
+├── python/                     # Source code of the data generator
+│   ├── database/               # Database handling module
+│   │   ├── db_connector.py     # Connection configuration
+│   │   └── db_insertion.py     # Record insertion logic
+│   └── simulator/              # Main simulation logic
+│       ├── data_generator.py   # Random parameter generation
+│       └── simulator.py        # Simulation start
+│
+├── sql/                        # T-SQL scripts (Data Warehouse)
+│   ├── 01_DDL_Create_Tables.sql          # Creating table structures
+│   ├── 02_DML_Fill_Dim_Tables.sql        # Populating static dimensions
+│   ├── 03_DML_Fill_fct_ProductionPlan.sql
+│   ├── usp_LoadTelemetry.sql             # Stored procedure
+│   ├── v_Daily_Availability.sql          # View calculating availability
+│   ├── v_Daily_Performance.sql           # View calculating performance
+│   ├── v_Daily_Quality.sql               # View calculating quality
+│   └── v_OEE_FactSheet.sql               # Analytical views (Semantic layer)
+│
+├── SmartFactoryReport.pbix     # Final Power BI report file
+└── README.md                   # Technical documentation
+
+---
+
+## 📬 Contact
+Author: **Igor Sarnowski**
 * LinkedIn: https://www.linkedin.com/in/igor-sarnowski-9921202a1/
 * GitHub: https://github.com/1G4S
