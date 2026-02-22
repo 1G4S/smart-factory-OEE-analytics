@@ -105,6 +105,7 @@ Power BI: Data visualization layer. DAX measures, Drill-through functionality, a
 ## 📂 File Structure
 
 The project has been divided into functional modules according to the following structure:
+```text
 SmartFactory_OEE_Analytics/
 │
 ├── img/                        # Screenshots used in documentation
@@ -131,6 +132,7 @@ SmartFactory_OEE_Analytics/
 │
 ├── SmartFactoryReport.pbix     # Final Power BI report file
 └── README.md                   # Technical documentation
+```
 
 ---
 
